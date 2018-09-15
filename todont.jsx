@@ -23,7 +23,7 @@ class ToDont extends React.Component {
 
 	updateListItem(newValue, idx) {
 		this.setState((state, props) => {
-			let updatedItems = state.items;
+			let updatedItems = state.items.slice(0);
 			updatedItems[idx] = newValue;
 			return { items: updatedItems }
 		});
@@ -31,16 +31,15 @@ class ToDont extends React.Component {
 
 	addNewItem() {
 		this.setState((state, props) => {
-			let updatedItems = state.items;
+			let updatedItems = state.items.slice(0);
 			updatedItems.push('');
 			return { items: updatedItems };
 		});
 	}
 
 	deleteListItem(idx) {
-		console.log(idx);
 		this.setState((state, props) => {
-			let updatedItems = state.items;
+			let updatedItems = state.items.slice(0);
 			updatedItems.splice(idx, 1);
 			return { items: updatedItems }
 		});
@@ -50,9 +49,13 @@ class ToDont extends React.Component {
 		let listElements = this.state.items.map((item, idx) => <ToDontItem key={idx} index={idx} value={item} onChange={this.updateListItem} deleteItem={this.deleteListItem}></ToDontItem>)
 
 		return (
-			<div>
+			<div className="todont">
 				<div className="app-desc todont-app-desc">
-					<h1>to-don't</h1>
+				<div className="row align-items-center">
+					<h1 className="mx-4">to-don't</h1>
+					<a className="btn btn-secondary btn-sm btn-github" href="https://github.com/evlawless/todont"><img src="./images/GitHub-Mark-32px.png" height="16px" /> view on github</a>
+				</div>
+					
 					<p>
 						the to-don't list is a list of things not to do. it's like a to-do list in many ways except for the fact that it
 						is the literal opposite.
@@ -64,6 +67,7 @@ class ToDont extends React.Component {
 					<p>
 						decide for yourself how ashamed you should be when you do
 						</p>
+
 				</div>
 				<div className="app-content todont-app-content px-3">
 					<h2>do&nbsp;not do the&nbsp;following:</h2>
