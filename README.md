@@ -1,2 +1,2 @@
 # todont
-A simple react app for tracking to don't lists
+A simple react component for tracking to don't lists
